@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Panel Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <form class="col-sm-12" [formGroup]="courseForm" (ngSubmit)="onSubmitCourse()">
+                <div class="panel-group">
+                    <div class="container mt-5 d-flex align-items-center">
+                        <a routerLink="/course" class="btn btn-default border-0">
+                            <i class="fas fa-arrow-left"></i></a>
+                        <p class="ml-3 mb-0" style="color: deeppink;">{{ getSubmitButtonText()}} Course</p>
+                    </div>
+                    <div class="panel panel-default col-sm-12">
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <label for="inputName" class="form-label">Course Name</label><br>
+                                    <input type="text" class="form-control" id="inputName" placeholder="Enter Course Name" formControlName="courseName" >
+                                    <div>
+                                        <span *ngIf="courseForm.get('courseName').invalid && courseForm.get('courseName').touched" style="color: red;">Course Name is a required field</span>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <label for="inputAddress2" class="form-label">Course Credit</label><br>
+                                    <input type="text" class="form-control" id="inputAddress2" placeholder="Enter Course Credit" formControlName="courseCredit">
+                                    <div>
+                                        <span *ngIf="courseForm.get('courseCredit').invalid && courseForm.get('courseCredit').touched" style="color: red;">Course Credit is a required field</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-sm-12" style="text-align: center; margin-top: 10px;" *ngIf="!isView">
+                    <a class="btn btn-danger" [routerLink]="'/course'" role="button">Cancel</a>
+                    <span style="margin-left: 10px;"></span>
+                    <button type="submit" class="btn btn-primary"><b>{{ getSubmitButtonText() }}</b></button>
+                </div>
+                
+            </form>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
+

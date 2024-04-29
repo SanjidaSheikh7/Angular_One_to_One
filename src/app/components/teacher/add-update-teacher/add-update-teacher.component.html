@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Panel Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <div class="container col-sm-12">
+        <form class="col-sm-12" [formGroup]="teacherForm" (ngSubmit)="onSubmitTeacher()">
+            <div class="container mt-5 d-flex align-items-center">
+                <a routerLink="/teacher" class="btn btn-default border-0">
+                    <i class="fas fa-arrow-left"></i></a>
+                <p class="ml-3 mb-0" style="color: deeppink;"> {{getSubmitButtonText()}}  Teacher</p>
+            </div>
+        <div class="panel panel-default col-sm-12 ">
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <label for="inputName" class="form-label">Name</label><br>
+                        <input type="text" class="form-control" id="inputName" placeholder="Enter Full Name" formControlName="name">
+                        <div>
+                            <span *ngIf="teacherForm.get('name').invalid && teacherForm.get('name').touched" style="color: red;">Name is a required field</span>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <label for="inputAddress2" class="form-label">Email Address</label><br>
+                        <input type="text" class="form-control" id="inputAddress2" placeholder="Enter Email Address" formControlName="email">
+                        <div>
+                            <span *ngIf="teacherForm.get('email').invalid && teacherForm.get('email').touched" style="color: red;">Valid email required</span>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <label for="inputCity" class="form-label">Phone Number</label><br>
+                        <input type="tel" class="form-control" id="inputCity" placeholder="Enter Mobile Number" pattern="0\d{10}" formControlName="phoneNo">
+                        <div>
+                            <span *ngIf="teacherForm.get('phoneNo').invalid && teacherForm.get('phoneNo').touched" style="color: red;">Mobile number is a required field</span>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <label for="address" class="form-label">Address</label><br>
+                        <input type="text" class="form-control" id="address" placeholder="Enter Address" formControlName="address">
+                        <div>
+                            <span *ngIf="teacherForm.get('address').invalid && teacherForm.get('address').touched" style="color: red;">Address is a required field</span>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <label for="courseSelect" class="form-label">Choose a course:</label>
+                        <select id="courseSelect" class="form-select form-control" (change)="onCourseSelectionChange($event)" formControlName="courseId">
+                            <option value="null"disabled selected>Select a course</option>
+                            <option *ngFor="let course of courseList" [value]="course.id">{{course.courseName}}</option>
+                        </select>
+                    </div>
+                </div> 
+                  
+            </div>
+        </div>
+        <div class="col-sm-12" style="text-align: center; margin-top: 10px;" *ngIf="!isView">
+            <a class="btn btn-danger" href="/teacher" role="button">Cancel</a>
+            <span style="margin-left: 10px;"></span>
+            <button type="submit" class="btn btn-primary"><b>{{ getSubmitButtonText() }}</b></button>
+        </div>
+    </form>
+    </div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
+
+
